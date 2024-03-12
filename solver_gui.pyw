@@ -1,3 +1,4 @@
+#Jai Jagannath 🙏🙏
 import tkinter as tk
 import solver
 from tkinter import messagebox
@@ -86,16 +87,18 @@ def exc(grid):
             txtbox=txtboxlist[i-1][j-1]
             txt=txtbox.get()
             r,c=chnge(i),chnge(j)
-            if r!=None and c!=None and txt!='':
-                grid[r][c]=int(txt)
+            if r!=None and c!=None:
+                if txt!='':
+                    grid[r][c]=int(txt)
+                else:grid[r][c]=0
     ansl=[]
+    #solt=sol(grid,ansl)
     solt=threading.Thread(target=sol(grid,ansl))
     solt.start()
     solt.join()
     ans_grid=ansl[0]
     if ans_grid=='wrong':
         messagebox.showerror(title='ERROR !!',message='Sudoku Unsolvable !!\nTry Again >>',)
-        ansl=['corr']
         clr_grid()
     else:
         for i in range(1,12):
